@@ -1,3 +1,7 @@
 const AuthenticationMessages = require('./authentication');
+const ValidationMessages = require('./validation');
 
-module.exports = { AuthenticationMessages };
+module.exports = {
+  AuthenticationMessages,
+  ValidationMessages,
+};

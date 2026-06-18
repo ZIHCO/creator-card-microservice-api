@@ -25,6 +25,9 @@ const ENDPOINT_CONFIGS = [
   {
     path: './endpoints/onboarding/',
   },
+  {
+    path: './endpoints/create-creator-cards/',
+  },
 ];
 
 function logEndpointMetaData(endpointConfigs) {

@@ -1,19 +1,19 @@
 {
-  "name": "profold-be-api",
+  "name": "creator-card-microservice-api",
   "version": "1.0.0",
-  "description": "Project Scaffold for R17 Projects",
+  "description": "Creator card microservice API lets creators publish a shareable profile card showcasing their links and service rates.",
   "main": "app.js",
   "type": "commonjs",
   "repository": {
     "type": "git",
-    "url": "profold-be-api-1"
+    "url": "git+https://github.com/ZIHCO/creator-card-microservice-api.git"
   },
   "scripts": {
     "test": "set USE_MOCK_MODEL=1 && mocha --recursive --require dotenv/config",
     "prepare": "husky",
     "commitlint": "commitlint --edit",
     "sync-envs": "node sync-env-files",
-    "start": "nodemon bootstrap.js"
+    "start": "node bootstrap.js"
   },
   "keywords": [],
   "author": "Resilience17",
@@ -48,6 +48,7 @@
     "bull": "^4.16.5",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "eslint-plugin-import": "^2.32.0",
     "express": "^4.18.2",
     "form-data": "^4.0.2",
     "handlebars": "^4.7.8",
@@ -56,7 +57,6 @@
     "knex": "^3.1.0",
     "mongoose": "^8.2.0",
     "mysql2": "^3.9.1",
-    "nodemon": "^3.1.14",
     "pino": "^8.19.0",
     "request-ip": "^3.3.0",
     "resend": "^3.2.0",
