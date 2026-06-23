@@ -1,7 +1,9 @@
 const login = require('./onboarding/login');
-const creatorCards = require('./create-creator-cards/creator-cards');
+const createCard = require('./card-management/create-card');
+const retrieveCard = require('./card-management/retrieve-card');
 
 module.exports = {
   login,
-  creatorCards,
+  createCard,
+  retrieveCard,
 };

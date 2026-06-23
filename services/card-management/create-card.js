@@ -37,7 +37,7 @@ const spec = `root {
 // Parse the spec outside the service function
 const parsedSpec = validator.parse(spec);
 
-async function creatorCards(serviceData) {
+async function createCard(serviceData) {
   // Validate incoming data
   const data = validator.validate(serviceData, parsedSpec);
   let response;
@@ -82,11 +82,10 @@ async function creatorCards(serviceData) {
         throwAppError(ValidationMessages.URL01, ERROR_CODE.VALIDATIONERR, { details: errors });
       }
     }
-    // start of DB query
+
     const Cards = repositoryFactory(Card);
     let { slug } = data;
     let existingCard;
-    // end of DB query
 
     if (slug) {
       const slugWithoutHyphens_ = slug.replaceAll('-', '').replaceAll('_', '');
@@ -133,4 +132,4 @@ async function creatorCards(serviceData) {
   return response;
 }
 
-module.exports = creatorCards;
+module.exports = createCard;

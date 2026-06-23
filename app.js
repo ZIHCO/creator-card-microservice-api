@@ -26,7 +26,7 @@ const ENDPOINT_CONFIGS = [
     path: './endpoints/onboarding/',
   },
   {
-    path: './endpoints/create-creator-cards/',
+    path: './endpoints/card-management/',
   },
 ];
 
