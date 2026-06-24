@@ -44,7 +44,7 @@ async function createCard(serviceData) {
 
   try {
     let accessType = data.access_type;
-    const accessCode = data.access_code;
+    const accessCode = data.access_code || null;
     const errors = {};
 
     accessType = accessType === undefined ? 'public' : accessType;
@@ -116,16 +116,27 @@ async function createCard(serviceData) {
     }
 
     const card = await Cards.create(data);
-    const id = card._id;
-
-    delete card._id;
 
     response = {
-      id,
-      ...card,
+      id: card._id,
+      title: card.title,
+      description: card.description,
+      slug,
+      creator_reference: card.creator_reference,
+      links,
+      service_rates: {
+        currency: card.service_rates.currency,
+        rates,
+      },
+      status: card.status,
+      access_type: card.access_type,
+      acces_code: accessCode,
+      created: card.created,
+      updated: card.updated,
+      deleted: null,
     };
   } catch (error) {
-    appLogger.errorX(error, 'creator-cards-error');
+    appLogger.errorX(error, 'create-card-error');
     throw error;
   }
 
