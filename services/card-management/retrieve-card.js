@@ -1,10 +1,21 @@
+const validator = require('@app-core/validator');
 const { appLogger } = require('@app-core/logger');
 const { CardMessages } = require('@app/messages');
 const { throwAppError, ERROR_CODE } = require('@app-core/errors');
 const { Card } = require('@app/models');
 const repositoryFactory = require('@app-core/repository-factory');
 
+// Spec for creator-cards service
+const spec = `root {
+  access_code? string<length:6>
+}`;
+
+// Parse the spec outside the service function
+const parsedSpec = validator.parse(spec);
+
 async function retrieveCard(serviceData, options = {}) {
+  // Validate incoming data
+  const data = validator.validate(serviceData, parsedSpec);
   let response;
 
   try {

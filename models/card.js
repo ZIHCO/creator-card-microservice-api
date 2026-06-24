@@ -20,11 +20,11 @@ const modelName = 'cards';
  */
 
 const schemaConfig = {
-  _id: { type: SchemaTypes.ULID },
+  _id: { type: SchemaTypes.ULID, isUnique: true },
 
   title: { type: SchemaTypes.String },
   description: { type: SchemaTypes.String },
-  slug: { type: SchemaTypes.String, lowercase: true, index: true },
+  slug: { type: SchemaTypes.String, lowercase: true, isUnique: true, index: true },
   creator_reference: { type: SchemaTypes.String, index: true },
 
   links: [

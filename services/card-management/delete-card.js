@@ -42,7 +42,7 @@ async function deleteCard(serviceData, options) {
     });
 
     let deleted;
-    if (result.deletedCount > 0) {
+    if (result.modifiedCount > 0) {
       deleted = Date.now();
     } else {
       deleted = null;
@@ -57,6 +57,12 @@ async function deleteCard(serviceData, options) {
       description: rate.description,
       amount: rate.amount,
     }));
+    let accessCode;
+    if (!existingCard.access_code) {
+      accessCode = null;
+    } else {
+      accessCode = existingCard.access_code;
+    }
 
     response = {
       id: existingCard._id,
@@ -71,7 +77,7 @@ async function deleteCard(serviceData, options) {
       },
       status: existingCard.status,
       access_type: existingCard.access_type,
-      acces_code: null,
+      acces_code: accessCode,
       created: existingCard.created,
       updated: existingCard.updated,
       deleted,
