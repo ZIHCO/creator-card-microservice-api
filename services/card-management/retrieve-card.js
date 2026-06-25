@@ -2,26 +2,26 @@ const validator = require('@app-core/validator');
 const { appLogger } = require('@app-core/logger');
 const { CardMessages } = require('@app/messages');
 const { throwAppError, ERROR_CODE } = require('@app-core/errors');
-const { Card } = require('@app/models');
 const repositoryFactory = require('@app-core/repository-factory');
 
 // Spec for creator-cards service
 const spec = `root {
+  slug string<trim|minLength:5|maxLength:50>
   access_code? string<length:6>
 }`;
 
 // Parse the spec outside the service function
 const parsedSpec = validator.parse(spec);
 
-async function retrieveCard(serviceData, options = {}) {
+async function retrieveCard(serviceData) {
   // Validate incoming data
   const data = validator.validate(serviceData, parsedSpec);
   let response;
 
   try {
-    const { slug } = serviceData;
-    const accessCode = options.access_code;
-    const Cards = repositoryFactory(Card);
+    const { slug } = data;
+    const accessCode = data.access_code ?? data.access_code;
+    const Cards = repositoryFactory('Card');
     const errors = {};
     const existingCard = await Cards.findOne({
       query: { slug },

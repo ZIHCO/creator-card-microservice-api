@@ -2,18 +2,18 @@ const validator = require('@app-core/validator');
 const { appLogger } = require('@app-core/logger');
 const { CardMessages } = require('@app/messages');
 const { throwAppError, ERROR_CODE } = require('@app-core/errors');
-const { Card } = require('@app/models');
 const repositoryFactory = require('@app-core/repository-factory');
 
 // Spec for creator-cards service
 const spec = `root {
+  slug string<trim|minLength:5|maxLength:50>
   creator_reference string<trim|length:20>
 }`;
 
 // Parse the spec outside the service function
 const parsedSpec = validator.parse(spec);
 
-async function deleteCard(serviceData, options) {
+async function deleteCard(serviceData) {
   // Validate incoming data
   const data = validator.validate(serviceData, parsedSpec);
   let response;
@@ -21,8 +21,8 @@ async function deleteCard(serviceData, options) {
   try {
     const creatorReference = data.creator_reference;
     const errors = {};
-    const { slug } = options;
-    const Cards = repositoryFactory(Card);
+    const { slug } = data;
+    const Cards = repositoryFactory('Card');
     const existingCard = await Cards.findOne({
       query: { slug },
     });

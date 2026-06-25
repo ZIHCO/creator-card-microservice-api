@@ -7,7 +7,6 @@ const {
   isPositiveInteger,
   generateSlugFromTitle,
 } = require('@app/services/utils');
-const { Card } = require('@app/models');
 const repositoryFactory = require('@app-core/repository-factory');
 const random = require('@app-core/randomness');
 
@@ -83,7 +82,7 @@ async function createCard(serviceData) {
       }
     }
 
-    const Cards = repositoryFactory(Card);
+    const Cards = repositoryFactory('Card');
     let { slug } = data;
     let existingCard;
 

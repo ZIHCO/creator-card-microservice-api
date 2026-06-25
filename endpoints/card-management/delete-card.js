@@ -6,10 +6,9 @@ module.exports = createHandler({
   method: 'delete',
   middlewares: [],
   async handler(rc, helpers) {
-    const payload = rc.body;
-    const options = rc.params;
+    const payload = { ...rc.body, ...rc.params };
 
-    const response = await deleteCardService(payload, options);
+    const response = await deleteCardService(payload);
     return {
       status: helpers.http_statuses.HTTP_200_OK,
       message: 'Creator Card Deleted Successfully.',

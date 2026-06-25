@@ -7,10 +7,9 @@ module.exports = createHandler({
   method: 'get',
   middlewares: [],
   async handler(rc, helpers) {
-    const payload = rc.params;
-    const options = rc.query;
+    const payload = { ...rc.params, ...rc.query };
 
-    const response = await retrieveCardService(payload, options);
+    const response = await retrieveCardService(payload);
     return {
       status: helpers.http_statuses.HTTP_200_OK,
       message: 'Creator Card Retrieved Successfully.',

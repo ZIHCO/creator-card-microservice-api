@@ -9,7 +9,7 @@
     "url": "git+https://github.com/ZIHCO/creator-card-microservice-api.git"
   },
   "scripts": {
-    "test": "set USE_MOCK_MODEL=1 && mocha --recursive --require dotenv/config",
+    "test": "USE_MOCK_MODEL=1 mocha --recursive test --require dotenv/config --require ./test/setup.js",
     "prepare": "husky",
     "commitlint": "commitlint --edit",
     "sync-envs": "node sync-env-files",
